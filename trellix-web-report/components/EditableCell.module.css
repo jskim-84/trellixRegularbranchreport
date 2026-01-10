@@ -1,0 +1,27 @@
+.input {
+    width: 100%;
+    padding: 4px;
+    border: 2px solid #2563eb;
+    background: #dbeafe;
+    outline: none;
+    font-family: inherit;
+    font-size: inherit;
+    box-sizing: border-box;
+}
+
+.display {
+    padding: 4px;
+    min-height: 24px;
+    cursor: text;
+    white-space: pre-wrap;
+}
+
+.display:hover {
+    outline: 1px dashed #93c5fd;
+    background: #f8fbff;
+}
+
+.display:focus {
+    outline: 2px solid #2563eb;
+    background: #dbeafe;
+}

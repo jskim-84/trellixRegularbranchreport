@@ -1,0 +1,73 @@
+:root {
+  --bg: #ffffff;
+  --fg: #111827;
+  --header-bg: #1f4e79;
+  --footer-bg: #1f4e79;
+  --header-fg: #ffffff;
+  --footer-fg: #ffffff;
+  --width-col-ab: 30%;
+  --width-col-c: 25%;
+  --width-col-d: 35%;
+  --width-col-e: 10%;
+}
+
+body {
+  margin: 0;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  line-height: 1.45;
+  color: var(--fg);
+  background: var(--bg);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 20px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  table-layout: fixed;
+}
+
+th,
+td {
+  border: 1px solid #e5e7eb;
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: top;
+  word-break: keep-all;
+  white-space: pre-wrap;
+}
+
+thead th {
+  background: var(--header-bg);
+  color: var(--header-fg);
+  text-align: center;
+  vertical-align: middle;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.col-ab {
+  width: var(--width-col-ab);
+}
+
+.col-c {
+  width: var(--width-col-c);
+}
+
+.col-d {
+  width: var(--width-col-d);
+}
+
+.col-e {
+  width: var(--width-col-e);
+}

@@ -1,0 +1,2940 @@
+{
+  "reports": [
+    {
+      "id": "ex-report-lsitc",
+      "title": "Trellix EX 장비 점검 보고서",
+      "inspector": "김진수",
+      "group": "LSITC",
+      "type": "EX",
+      "createdAt": "2025-12-15T09:00:00.000Z",
+      "updatedAt": "2025-12-15T09:00:00.000Z",
+      "customInfo": {
+        "customer": {
+          "name": "LS ITC",
+          "support": "(주) 인더포레스트",
+          "inspector": "김진수",
+          "date": "2025-12-15",
+          "phone": "010-8766-2024",
+          "type": "월",
+          "note": ""
+        },
+        "system": [
+          {
+            "product": "Trellix EX",
+            "equipment": "LS-EX1",
+            "version": "10.0.4.1005222",
+            "customer": "LS ITC",
+            "usage": "Email Security (e-APT) System"
+          },
+          {
+            "product": "Trellix EX",
+            "equipment": "LS-EX2",
+            "version": "10.0.4.1005222",
+            "customer": "LS ITC",
+            "usage": "Email Security (e-APT) System"
+          }
+        ],
+        "license": [
+          {
+            "appliance": "EX8500 #1",
+            "serial": "FZ2224RA8IX",
+            "id": "74FE48680D31",
+            "endDate": "2027-06-25",
+            "features": [
+              "FIREEYE_APPLIANCE",
+              "FIREEYE_SUPPORT",
+              "CONTENT_UPDATES",
+              "EMPS_ATTACHMENT_SCAN",
+              "EMPS_URL_SCAN"
+            ]
+          },
+          {
+            "appliance": "EX8500 #2",
+            "serial": "FZ2224RA8IV",
+            "id": "74FE48695A6E",
+            "endDate": "2027-06-25",
+            "features": [
+              "FIREEYE_APPLIANCE",
+              "FIREEYE_SUPPORT",
+              "CONTENT_UPDATES",
+              "EMPS_ATTACHMENT_SCAN",
+              "EMPS_URL_SCAN"
+            ]
+          }
+        ],
+        "summary": {
+          "result": "[점검 결과]\n□ EX1, 2 공통\n- /var 파일 시스템 가용량 확보를 위한 perfmon 로그 백업 및 삭제 작업 필요",
+          "note": "※ 신규 이미지 버전(11.0.0) 출시"
+        }
+      },
+      "sections": [
+        {
+          "id": "sec-ex1-1",
+          "title": "[EX8500 #1] 하드웨어 상태 점검",
+          "sortOrder": 1,
+          "items": [
+            {
+              "id": "item-ex1-1-1",
+              "category": "시스템 전원",
+              "criteria": "전원 공급 및 하드웨어 전원 상태 확인\n(Show system hardware status power supply)",
+              "result": "전원 상태: Good",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "item-ex1-1-2",
+              "category": "FAN 상태",
+              "criteria": "시스템 쿨링팬 동작 상태 확인\n(CLI - show system hardware status fan)",
+              "result": "Overall fan health: healthySystem",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "item-ex1-1-3",
+              "category": "장비 온도 상태",
+              "criteria": "시스템 내부 온도 적정 여부 확인\n(CLI - show system hardware status temperature)",
+              "result": "시스템 온도: 44°C (상태: elsius)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "item-ex1-1-4",
+              "category": "디스크 상태 (RAID 포함)",
+              "criteria": "디스크 인식 여부 및 RAID 상태 확인\n(CLI - show system hardware status raid)",
+              "result": "Overall raid status: Good\n\nDisk status:\n- Disk 0: Online\n- Disk 1: Online\n- Disk 2: Online\n- Disk 3: Online",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "sec-ex1-2",
+          "title": "[EX8500 #1] 시스템 버전 점검",
+          "sortOrder": 2,
+          "items": [
+            {
+              "id": "item-ex1-2-1",
+              "category": "Security Content",
+              "criteria": "Security Content가 최근 시간에 업데이트 되었으면 정상",
+              "result": "Security Content 버전 정보를 찾을 수 없음",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "item-ex1-2-2",
+              "category": "FEOS Version",
+              "criteria": "10.0.4.1005222",
+              "result": "10.0.4.1005222",
+              "opinion": "양호",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "item-ex1-2-3",
+              "category": "Guest Image",
+              "criteria": "Version: 24.0503 (yes)",
+              "result": "Version: 24.0503 (yes)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            }
+          ]
+        },
+        {
+          "id": "sec-ex1-3",
+          "title": "[EX8500 #1] 파일 시스템 상태 점검",
+          "sortOrder": 3,
+          "items": [
+            {
+              "id": "item-ex1-3-1",
+              "category": "각 파일 시스템 사용량 확인",
+              "criteria": "/config 사용량 확인\n(CLI - show files system)",
+              "result": "사용량: 4.1% (20MB/488MB)\n여유공간: 95.9% (468MB)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "item-ex1-3-2",
+              "category": "각 파일 시스템 사용량 확인",
+              "criteria": "/var 사용량 확인\n(CLI - show files system)",
+              "result": "사용량: 75.3% (48458MB/64379MB)\n여유공간: 24.7% (15922MB)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "item-ex1-3-3",
+              "category": "각 파일 시스템 사용량 확인",
+              "criteria": "/data 사용량 확인\n(CLI - show files system)",
+              "result": "사용량: 14.7% (457100MB/3102396MB)\n여유공간: 85.3% (2645296MB)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "item-ex1-3-4",
+              "category": "각 파일 시스템 사용량 확인",
+              "criteria": "/data/db 사용량 확인\n(CLI - show files system)",
+              "result": "사용량: 14.7% (457100MB/3102396MB)\n여유공간: 85.3% (2645296MB)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "sec-ex1-4",
+          "title": "[EX8500 #1] 시스템 상태 점검",
+          "sortOrder": 4,
+          "items": [
+            {
+              "id": "item-ex1-4-1",
+              "category": "System Uptime 확인",
+              "criteria": "Uptime 시간 확인\n(CLI - show version)",
+              "result": "시스템 가동 시간: 211d 16h 19m",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "item-ex1-4-2",
+              "category": "DB 상태 확인",
+              "criteria": "DB 사용/여유 공간 확인\n(CLI - show health all / Database Service)",
+              "result": "Database Service: Healthy\nDB 크기: 8.5 GB, 여유공간: 446 GB",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "item-ex1-4-3",
+              "category": "Memory 상태 점검",
+              "criteria": "시스템 Memory 사용량 확인\n(CLI - show memory)",
+              "result": "Physical Memory:\n사용량: 17.7% (45644MB/257621MB)\n여유공간: 82.3% (211977MB)\n\nSwap Memory:\n사용량: 0.8% (515MB/65536MB)\n여유공간: 99.2% (65021MB)\n\nMemory Cache:\nBuffers: 3161 MB, Cache: 187190 MB",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "item-ex1-4-4",
+              "category": "Interface 상태 확인",
+              "criteria": "사용 중인 인터페이스 활성 상태 확인\n(CLI - show interface 인터페이스)",
+              "result": "ether1\nUP/UP\nIP: 10.125.11.211\nSpeed: 1000Mb/s (auto)\n--\nether2\nUP/UP\nIP: Netmask:\nSpeed: 1000Mb/s (auto)\n--\npether2\nUP/UP\nIP: Netmask:\nSpeed: 1000Mb/s (auto)\n--\npether3\nUP/UP\nIP: 10.125.13.211\nSpeed: 1000Mb/s (auto)\n--\npether5\nAdmin:yes / Link:no\nIP: Netmask:\nSpeed: UNKNOWN",
+              "opinion": "일부 인터페이스 Link Down",
+              "isDeleted": false,
+              "sortOrder": 4
+            },
+            {
+              "id": "item-ex1-4-5",
+              "category": "데몬 상태 확인",
+              "criteria": "주요 데몬 작동 상태 확인\n(CLI - show pm process all summary)",
+              "result": "총 92개 프로세스 (실행중: 57개, 중지: 6개, 관리되지 않음: 29개)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 5
+            },
+            {
+              "id": "item-ex1-4-6",
+              "category": "서비스 상태 확인",
+              "criteria": "주요 서비스 상태 확인\n(CLI - show health all)",
+              "result": "전체 서비스: 36개, 정상: 31개\n비정상 서비스:\nHelix Datastreaming: Disabled\nRetroactive Email Remediation: Disabled\nAdvanced Load Balancer: Disabled\nHelixConnect: Disabled\nMVX Submission Client: Disabled",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 6
+            }
+          ]
+        },
+        {
+          "id": "sec-ex1-5",
+          "title": "[EX8500 #1] 네트워크 상태 점검",
+          "sortOrder": 5,
+          "items": [
+            {
+              "id": "item-ex1-5-1",
+              "category": "Interface 세부 확인",
+              "criteria": "사용 중인 인터페이스 Rx/Tx 정보 확인\n(CLI - show interface 인터페이스명)",
+              "result": "Interface ether1\nStatus: Admin-up: yes, Link-up: yes\nIP: 10.125.11.211\nSpeed: 1000Mb/s\nRx: 254266469183 bytes/ 842432439 packets\nTx: 125714117401 bytes/ 793097159 packets\n\nInterface ether2\nStatus: Admin-up: yes, Link-up: yes\nSpeed: 1000Mb/s\nRx: 2548301436472 bytes/ 1490952560packets\nTx: 52406091120 bytes/ 733433046 packets\n\nInterface pether3\nStatus: Admin-up: yes, Link-up: yes\nIP: 10.125.13.211\nSpeed: 1000Mb/s\nRx: 5222313631644 bytes/ 4886446393packets\nTx: 5216473908795 bytes/5122116411 packets",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "item-ex1-5-2",
+              "category": "NTP 동기화 확인",
+              "criteria": "현재 시간과 동일하면 정상\n(CLI - show clock)",
+              "result": "현재 시간: 2025/12/15 08:56:50 (Asia Southeast Seoul)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "item-ex1-5-3",
+              "category": "트래픽 유입 확인",
+              "criteria": "MTA 인터페이스 트래픽 정상 유입 여부 확인\n(CLI - tcpdump -ni pether3 port 25)",
+              "result": "트래픽 정상 유입 확인",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            }
+          ]
+        },
+        {
+          "id": "sec-ex1-6",
+          "title": "[EX8500 #1] 이벤트 탐지 상태 점검",
+          "sortOrder": 6,
+          "items": [
+            {
+              "id": "item-ex1-6-1",
+              "category": "이메일 분석 통계 확인",
+              "criteria": "Total Emails Received\n(CLI : show email-analysis statistics)",
+              "result": "-",
+              "opinion": "67019",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "item-ex1-6-2",
+              "category": "이메일 분석 통계 확인",
+              "criteria": "Total Emails Bypassed",
+              "result": "-",
+              "opinion": "0",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "item-ex1-6-3",
+              "category": "이메일 분석 통계 확인",
+              "criteria": "Total Attachments Analyzed",
+              "result": "-",
+              "opinion": "151096",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "item-ex1-6-4",
+              "category": "이메일 분석 통계 확인",
+              "criteria": "Total URLs Analyzed",
+              "result": "-",
+              "opinion": "745969",
+              "isDeleted": false,
+              "sortOrder": 4
+            },
+            {
+              "id": "item-ex1-6-5",
+              "category": "이메일 분석 통계 확인",
+              "criteria": "Total Emails Quarantined/Blocked",
+              "result": "-",
+              "opinion": "69",
+              "isDeleted": false,
+              "sortOrder": 5
+            },
+            {
+              "id": "item-ex1-6-6",
+              "category": "이메일 분석 통계 확인",
+              "criteria": "Malicious Count by type",
+              "result": "-",
+              "opinion": "Email Alerts : 21/3/120(Header/Attachment/URL)",
+              "isDeleted": false,
+              "sortOrder": 6
+            }
+          ]
+        },
+        {
+          "id": "sec-ex1-7",
+          "title": "[EX8500 #1] 큐 상태 점검",
+          "sortOrder": 7,
+          "items": [
+            {
+              "id": "item-ex1-7-1",
+              "category": "큐 대기 확인",
+              "criteria": "Deferred Queue\n(CLI: show email-analysis message-queue queue deferred)",
+              "result": "0",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "item-ex1-7-2",
+              "category": "큐 대기 확인",
+              "criteria": "Active Queue\n(CLI: show email-analysis message-queue queue active)",
+              "result": "0",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "item-ex1-7-3",
+              "category": "큐 대기 확인",
+              "criteria": "Bounced Queue\n(CLI: show email-analysis message-queue queue bounced)",
+              "result": "0",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            }
+          ]
+        },
+        {
+          "id": "sec-ex1-8",
+          "title": "[EX8500 #1] Block-List 현황 점검",
+          "sortOrder": 8,
+          "items": [
+            {
+              "id": "item-ex1-8-1",
+              "category": "Block-List 현황 확인",
+              "criteria": "Blocked List 변동 현황 확인\n(GUI : Settings - Blocked List 확인)",
+              "result": "변동 없음",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            }
+          ]
+        },
+        {
+          "id": "sec-ex2-1",
+          "title": "[EX8500 #2] 하드웨어 상태 점검",
+          "sortOrder": 9,
+          "items": [
+            {
+              "id": "item-ex2-1-1",
+              "category": "시스템 전원",
+              "criteria": "전원 공급 및 하드웨어 전원 상태 확인\n(CLI - Show system hardware status power supply)",
+              "result": "Overall power status: Good",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "default-report",
+      "title": "Trellix NX 정기점검 2025년 08월 보고서",
+      "inspector": "주성엔지니어링",
+      "group": "LSITC",
+      "type": "NX",
+      "createdAt": "2025-08-01T09:00:00.000Z",
+      "updatedAt": "2026-01-10T03:55:51.140Z",
+      "sections": [
+        {
+          "id": "sec-1",
+          "title": "하드웨어 상태 점검",
+          "sortOrder": 1,
+          "items": [
+            {
+              "id": "item-1-1",
+              "category": "전원 상태",
+              "criteria": "전원 공급 장치와 이중화된 전원에 문제 여부 확인\n(show system hardware status power-supply)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "item-1-2",
+              "category": "FAN 상태",
+              "criteria": "모든 시스템 FAN이 정상적으로 동작하고 있는지 확인\n(CLI – show system hardware status fan)",
+              "result": "Fan 1: 6600 RPM\nFan 2: 6100 RPM\nFan 3: 6600 RPM\nFan 4: 6200 RPM\nFan 5: 6400 RPM",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "item-1-3",
+              "category": "장비 온도 상태",
+              "criteria": "시스템 내부 온도가 적절한지 확인\n(CLI – show system hardware status temperature)",
+              "result": "전월: 24도\n당월: 26도",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "item-1-4",
+              "category": "Disk 상태 (RAID 포함)",
+              "criteria": "디스크 인식 여부 및 RAID 상태 확인\n(CLI - show system hardware status raid)",
+              "result": "디스크 2개 정상\nRAID 기능 정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "sec-2",
+          "title": "시스템 버전 점검",
+          "sortOrder": 2,
+          "items": [
+            {
+              "id": "item-2-1",
+              "category": "Security Content",
+              "criteria": "각 Version 상태가 “OK” 이면 정상\nSecurity Content가 최근 시간에 업데이트 되었으면 정상\n(CLI - show fenet security-content version)",
+              "result": "전월 : 1593.128\n당월 : 1601.150",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "item-2-2",
+              "category": "FEOS Version",
+              "criteria": "현재 버전 확인",
+              "result": "10.0.4.1005222",
+              "opinion": "신규 버전(11.0.0) 출시",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "item-2-3",
+              "category": "Guest Image",
+              "criteria": "현재 버전 확인",
+              "result": "전월 : 24.0503\n당월 : 24.0503",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            }
+          ]
+        },
+        {
+          "id": "sec-3",
+          "title": "파일 시스템 상태 점검",
+          "sortOrder": 3,
+          "items": [
+            {
+              "id": "item-3-1",
+              "category": "Disk 사용량 확인",
+              "criteria": "/config 사용량 확인\n(CLI – show files system)",
+              "result": "Space Total: 488 MB\nSpace Used: 14 MB\nSpace Free: 474 MB\nSpace Available: 445 MB\nSpace Percent Free: 97%\nInodes Percent Free: 99%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "item-3-2",
+              "category": "Disk 사용량 확인",
+              "criteria": "/var 사용량 확인\n(CLI – show files system)",
+              "result": "Space Total: 96633 MB\nSpace Used: 6847 MB\nSpace Free: 89786 MB\nSpace Available: 84855 MB\nSpace Percent Free: 92%\nInodes Percent Free: 99%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "item-3-3",
+              "category": "Disk 사용량 확인",
+              "criteria": "/data 사용량 확인\n(CLI – show files system)",
+              "result": "Space Total: 3070647 MB\nSpace Used: 334815 MB\nSpace Free: 2735832 MB\nSpace Available: 2579828 MB\nSpace Percent Free: 89%\nInodes Percent Free: 99%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "item-3-4",
+              "category": "Disk 사용량 확인",
+              "criteria": "/data/db 사용량 확인\n(CLI – show files system)",
+              "result": "Space Total: 503836 MB\nSpace Used: 4752 MB\nSpace Free: 499084 MB\nSpace Available: 473468 MB\nSpace Percent Free: 99%\nInodes Percent Free: 99%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "sec-4",
+          "title": "시스템 상태 점검",
+          "sortOrder": 4,
+          "items": [
+            {
+              "id": "item-4-1",
+              "category": "System Uptime 점검",
+              "criteria": "Uptime 시간 확인\n(CLI - show version > uptime)",
+              "result": "309d 19h 9m",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "item-4-2",
+              "category": "DB 상태",
+              "criteria": "전월 대비 DB 사이즈 증감 확인\n(CLI - show health all / Database Service)",
+              "result": "DB Size\n전월: 1.64 GB\n당월: 1.32 GB",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "item-4-3",
+              "category": "Memory 상태 점검",
+              "criteria": "시스템 Memory 사용량 확인\n(CLI – show memory)",
+              "result": "Physical\nUsed: 36815 MB\nFree: 27105 MB\n\nSwap\nUsed: 1163 MB\nFree: 64373 MB",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "item-4-4",
+              "category": "Interface 상태 확인",
+              "criteria": "사용 중인 인터페이스 활성 상태 확인\n(CLI - show interface brief)",
+              "result": "사용중인 인터페이스\n(ether1, ether2, pether3, pether5)\nLink-up 정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            },
+            {
+              "id": "item-4-5",
+              "category": "데몬 상태 확인",
+              "criteria": "주요 데몬 작동 상태 확인\n(CLI – show pm process all summary)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 5
+            },
+            {
+              "id": "item-4-6",
+              "category": "서비스 상태 확인",
+              "criteria": "주요 서비스 상태 확인\n(CLI - show health all)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 6
+            }
+          ]
+        },
+        {
+          "id": "sec-5",
+          "title": "네트워크 상태 점검",
+          "sortOrder": 5,
+          "items": [
+            {
+              "id": "item-5-1",
+              "category": "Interface 세부 확인",
+              "criteria": "사용 중인 인터페이스 RX/TX 정보 확인\n(CLI - show interface 인터페이스명)",
+              "result": "인더페이스 - ether1\nRX error: 0 / TX error: 0\nRX discards: 0/ TX discards: 0\nRX overruns: 0 / TX overruns: 0\n\n인더페이스 - ether2\nRX error: 0 / TX error: 0\nRX discards: 0 / TX discards: 0\nRX overruns: 0 / TX overruns: 0\n\n인더페이스 - pether3\nRX error: 0 / TX error: 0\nRX discards: 6158 / TX discards: 0\nRX overruns: 0 / TX overruns: 0\n\n인더페이스 - pether5\nRX error: 0 / TX error: 0\nRX discards: 1549 / TX discards: 0\nRX overruns: 0 / TX overruns: 0",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "item-5-2",
+              "category": "NTP 동기화 확인",
+              "criteria": "현재 시간과 동일하면 정상\n(CLI - show clock)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "item-5-3",
+              "category": "트래픽 유입 확인",
+              "criteria": "SPAN/TAP Interface로부터 트래픽 정상 유입 여부 확인\n(CLI : tcpdump -ni 인터페이스명)",
+              "result": "pether3: 정상\npether5: 정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "item-5-4",
+              "category": "트래픽 양 확인",
+              "criteria": "Total Bandwidth 확인 (GUI - Dashboard)\n최대치가 237 Mbps 이하면 정상",
+              "result": "11시: 212Mbps",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cm-report-jusung",
+      "title": "Trellix CM 정기점검 2025년 08월 보고서 (주성)",
+      "inspector": "주성엔지니어링",
+      "group": "주성엔지니어링",
+      "type": "CM",
+      "createdAt": "2025-08-01T09:00:00.000Z",
+      "updatedAt": "2026-01-10T04:05:32.672Z",
+      "sections": [
+        {
+          "id": "sec-1",
+          "title": "하드웨어 상태 점검",
+          "sortOrder": 1,
+          "items": [
+            {
+              "id": "item-1-1",
+              "category": "전원 상태",
+              "criteria": "전원 공급 장치와 이중화된 전원에 문제 여부 확인\n(show system hardware status power-supply)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "item-1-2",
+              "category": "FAN 상태",
+              "criteria": "모든 시스템 FAN이 정상적으로 동작하고 있는지 확인\n(CLI – show system hardware status fan)",
+              "result": "Fan 1: 3800 RPM\nFan 2: 3800 RPM\nFan 3: 3900 RPM\nFan 4: 3600 RPM\nFan 5: 3800 RPM",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "item-1-3",
+              "category": "장비 온도 상태",
+              "criteria": "시스템 내부 온도가 적절한지 확인\n(CLI – show system hardware status temperature)",
+              "result": "전월: 29도\n당월: 30도",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "item-1-4",
+              "category": "Disk 상태 (RAID 포함)",
+              "criteria": "디스크 인식 여부 및 RAID 상태 확인\n(CLI - show system hardware status raid)",
+              "result": "디스크 4개 정상\nRAID 기능 정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "sec-2",
+          "title": "시스템 버전 점검",
+          "sortOrder": 2,
+          "items": [
+            {
+              "id": "item-2-1",
+              "category": "Security Content",
+              "criteria": "각 Version 상태가 “OK” 이면 정상\nSecurity Content가 최근 시간에 업데이트 되었으면 정상",
+              "result": "전월 : 121.102\n당월 : 121.102",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "item-2-2",
+              "category": "FEOS Version",
+              "criteria": "10.0.4.1005222",
+              "result": "10.0.4.1005222",
+              "opinion": "신규 버전(11.0.0) 출시",
+              "isDeleted": false,
+              "sortOrder": 2
+            }
+          ]
+        },
+        {
+          "id": "sec-3",
+          "title": "파일 시스템 상태 점검",
+          "sortOrder": 3,
+          "items": [
+            {
+              "id": "item-3-1",
+              "category": "Dlsk 사용량 확인",
+              "criteria": "/config 사용량 확인\n(CLI – show files system)",
+              "result": "Space Total: 488 MB\nSpace Used: 6 MB\nSpace Free: 482 MB\nSpace Available: 452 MB\nSpace Percent Free: 98%\nInodes Percent Free: 99%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "item-3-2",
+              "category": "Dlsk 사용량 확인",
+              "criteria": "/var 사용량 확인\n(CLI – show files system)",
+              "result": "Space Total: 32126 MB\nSpace Used: 4882 MB\nSpace Free: 27244 MB\nSpace Available: 25590 MB\nSpace Percent Free: 84%\nInodes Percent Free: 99%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "item-3-3",
+              "category": "Dlsk 사용량 확인",
+              "criteria": "/data 사용량 확인\n(CLI – show files system)",
+              "result": "Space Total: 4476489 MB\nSpace Used: 52643 MB\nSpace Free: 4415280 MB\nSpace Available: 4423846 MB\nSpace Percent Free: 98%\nInodes Percent Free: 99%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "item-3-4",
+              "category": "Dlsk 사용량 확인",
+              "criteria": "/data/db 사용량 확인\n(CLI – show files system)",
+              "result": "Space Total: 2952781 MB\nSpace Used: 4279 MB\nSpace Free: 2948502 MB\nSpace Available: 2798486 MB\nSpace Percent Free: 99%\nInodes Percent Free: 99%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "sec-4",
+          "title": "시스템 상태 점검",
+          "sortOrder": 4,
+          "items": [
+            {
+              "id": "item-4-1",
+              "category": "System Uptime 점검",
+              "criteria": "Uptime 시간 확인\n(CLI - show version > uptime)",
+              "result": "313d 22h 47m",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "item-4-2",
+              "category": "DB 상태",
+              "criteria": "전월 대비 DB 사이즈 증감 확인\n(CLI - show health all / Database Service)",
+              "result": "DB Size\n전월: 1.76 GB\n당월: 1.74 GB",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "item-4-3",
+              "category": "Memory 상태 점검",
+              "criteria": "시스템 Memory 사용량 확인\n(CLI – show memory)",
+              "result": "Physical\nUsed: 50432MB\nFree: 13614 MB\n\nSwap\nUsed: 2 MB\nFree: 65534 MB",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "item-4-4",
+              "category": "Interface 상태 확인",
+              "criteria": "사용 중인 인터페이스 활성 상태 확인\n(CLI - show interface brief)",
+              "result": "사용중 인터페이스 (ether1)\nLink-up 정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            },
+            {
+              "id": "item-4-5",
+              "category": "데몬 상태 확인",
+              "criteria": "주요 데몬 작동 상태 확인\n(CLI – show pm process all summary)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 5
+            },
+            {
+              "id": "item-4-6",
+              "category": "Appliance 연동 확인",
+              "criteria": "센서 장비 연동 상태 확인\n(CLI - show cmc appliances)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 6
+            },
+            {
+              "id": "item-4-7",
+              "category": "서비스 상태 확인",
+              "criteria": "주요 서비스 상태 확인\n(CLI - show health all)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 7
+            }
+          ]
+        },
+        {
+          "id": "sec-5",
+          "title": "네트워크 상태 점검",
+          "sortOrder": 5,
+          "items": [
+            {
+              "id": "item-5-1",
+              "category": "Interface 세부 확인",
+              "criteria": "사용 중인 인터페이스 RX/TX 정보 확인\n(CLI - show interface 인터페이스명)",
+              "result": "인터페이스 - ether1\nRX error: 0 / TX error: 0\nRX discards: 376 / TX discards: 0\nRX overruns: 2435 / TX overruns: 0",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "item-5-2",
+              "category": "NTP 동기화 확인",
+              "criteria": "현재 시간과 동일하면 정상\n(CLI - show clock)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-report-lsitc",
+      "title": "Trellix EX 정기점검 2025년 08월 보고서 (LSITC)",
+      "inspector": "주성엔지니어링",
+      "group": "LSITC",
+      "type": "EX",
+      "createdAt": "2025-08-01T09:00:00.000Z",
+      "updatedAt": "2026-01-10T04:14:40.306Z",
+      "sections": [
+        {
+          "id": "sec-1",
+          "title": "하드웨어 상태 점검",
+          "sortOrder": 1,
+          "items": [
+            {
+              "id": "ex-item-1-1",
+              "category": "전원 상태",
+              "criteria": "전원 공급 장치와 이중화된 전원에 문제 여부 확인\n(show system hardware status power-supply)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "ex-item-1-2",
+              "category": "FAN 상태",
+              "criteria": "모든 시스템 FAN이 정상적으로 동작하고 있는지 확인\n(CLI – show system hardware status fan)",
+              "result": "Fan 1: 4200 RPM\nFan 2: 3600 RPM\nFan 3: 4000 RPM\nFan 4: 3800 RPM\nFan 5: 3800 RPM",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "ex-item-1-3",
+              "category": "장비 온도 상태",
+              "criteria": "시스템 내부 온도가 적절한지 확인\n(CLI – show system hardware status temperature)",
+              "result": "전월: 25도\n당월: 25도",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "ex-item-1-4",
+              "category": "Disk 상태 (RAID 포함)",
+              "criteria": "디스크 인식 여부 및 RAID 상태 확인\n(CLI - show system hardware status temperature)",
+              "result": "디스크 4개 정상\nRAID 기능 정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "sec-2",
+          "title": "시스템 버전 점검",
+          "sortOrder": 2,
+          "items": [
+            {
+              "id": "ex-item-2-1",
+              "category": "Security Content",
+              "criteria": "각 Version 상태가 “OK” 이면 정상\nSecurity Content가 최근 시간에 업데이트 되었으면 정상\n\n(CLI - show fenet security-content version)\nCLI - show fenet guest-image status",
+              "result": "전월 : 1593.142\n당월 : 1601.150",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "ex-item-2-2",
+              "category": "FEOS Version",
+              "criteria": "10.0.4.1005222",
+              "result": "10.0.4.1005222",
+              "opinion": "신규 버전(11.0.0) 출시",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "ex-item-2-3",
+              "category": "Guest Image",
+              "criteria": "전월 : 24.0503\n당월 : 24.0503",
+              "result": "전월 : 24.0503\n당월 : 24.0503",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            }
+          ]
+        },
+        {
+          "id": "sec-3",
+          "title": "파일 시스템 상태 점검",
+          "sortOrder": 3,
+          "items": [
+            {
+              "id": "ex-item-3-1",
+              "category": "Disk 사용량 확인",
+              "criteria": "/config 사용량 확인\n(CLI – show files system)",
+              "result": "Space Total: 488 MB\nSpace Used: 16 MB\nSpace Free: 472 MB\nSpace Available: 442 MB\nSpace Percent Free: 96%\nInodes Percent Free: 99%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "ex-item-3-2",
+              "category": "Disk 사용량 확인",
+              "criteria": "/var 사용량 확인\n(CLI – show files system)",
+              "result": "Space Total: 64379 MB\nSpace Used: 5178 MB\nSpace Free: 59201 MB\nSpace Available: 55908 MB\nSpace Percent Free: 91%\nInodes Percent Free: 99%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "ex-item-3-3",
+              "category": "Disk 사용량 확인",
+              "criteria": "/data 사용량 확인\n(CLI – show files system)",
+              "result": "Space Total: 3102396 MB\nSpace Used: 351372 MB\nSpace Free: 2751024 MB\nSpace Available: 2593408 MB\nSpace Percent Free: 88%\nInodes Percent Free: 99%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "ex-item-3-4",
+              "category": "Disk 사용량 확인",
+              "criteria": "/data/db 사용량 확인\n(CLI – show files system)",
+              "result": "Space Total: 503836 MB\nSpace Used: 4069 MB\nSpace Free: 499768 MB\nSpace Available: 474152 MB\nSpace Percent Free: 99%\nInodes Percent Free: 99%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "sec-4",
+          "title": "시스템 상태 점검",
+          "sortOrder": 4,
+          "items": [
+            {
+              "id": "ex-item-4-1",
+              "category": "System Uptime 점검",
+              "criteria": "Uptime 시간 확인\n(CLI - show version > uptime)",
+              "result": "7d 17h 26m",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "ex-item-4-2",
+              "category": "DB 상태",
+              "criteria": "전월 대비 DB 사이즈 증감 확인\n(CLI - show health all / Database Service)",
+              "result": "DB Size\n전월: 1.41 GB\n당월: 1.45 GB",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "ex-item-4-3",
+              "category": "Memory 상태 점검",
+              "criteria": "시스템 Memory 사용량 확인\n(CLI – show memory)",
+              "result": "Physical\nUsed: 22323 MB\nFree: 41597 MB\n\nSwap\nUsed: 40 MB\nFree: 65496 MB",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "ex-item-4-4",
+              "category": "Interface 상태 확인",
+              "criteria": "사용 중인 인터페이스 활성 상태 확인\n(CLI - show interface brief)",
+              "result": "사용중인 인터페이스\n(ether1, ether2)\nLink-up 정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            },
+            {
+              "id": "ex-item-4-5",
+              "category": "데몬 상태 확인",
+              "criteria": "주요 데몬 작동 상태 확인\n(CLI – show pm process all summary)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 5
+            },
+            {
+              "id": "ex-item-4-6",
+              "category": "서비스 상태 확인",
+              "criteria": "주요 서비스 상태 확인\n(CLI - show health all)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 6
+            }
+          ]
+        },
+        {
+          "id": "sec-5",
+          "title": "네트워크 상태 점검",
+          "sortOrder": 5,
+          "items": [
+            {
+              "id": "ex-item-5-1",
+              "category": "Interface 세부 확인",
+              "criteria": "사용 중인 인터페이스 RX/TX 정보 확인\n(CLI - show interface 인터페이스명)",
+              "result": "인더페이스 - ether1\nRX error: 0 / TX error: 0\nRX discards: 0 / TX discards: 0\nRX overruns: 0 / TX overruns: 0\n\n인더페이스 - ether2\nRX error: 0 / TX error: 0\nRX discards: 0 / TX discards: 0\nRX overruns: 0 / TX overruns: 0",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "ex-item-5-2",
+              "category": "NTP 동기화 확인",
+              "criteria": "현재 시간과 동일하면 정상\n(CLI - show clock)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "ex-item-5-3",
+              "category": "트래픽 유입 확인",
+              "criteria": "MTA 인터페이스 트래픽 정상 유입 여부 확인\n(CLI : tcpdump -ni 인터페이스명 port 25)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            }
+          ]
+        },
+        {
+          "id": "sec-6",
+          "title": "이벤트 탐지 상태 점검",
+          "sortOrder": 6,
+          "items": [
+            {
+              "id": "ex-item-6-1",
+              "category": "이메일 분석 통계 확인",
+              "criteria": "이메일 통계 리포트 확인\nCLI : show email-analysis statistics)",
+              "result": "Total Emails Received : \n66773",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "ex-item-6-2",
+              "category": "이메일 분석 통계 확인",
+              "criteria": "Total Emails Bypassed : \n0",
+              "result": "Total Emails Bypassed : \n0",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "ex-item-6-3",
+              "category": "이메일 분석 통계 확인",
+              "criteria": "Received with Attachments :14999",
+              "result": "Received with Attachments :14999",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "ex-item-6-4",
+              "category": "이메일 분석 통계 확인",
+              "criteria": "Total Attachments Analyzed : \n61063",
+              "result": "Total Attachments Analyzed : \n61063",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            },
+            {
+              "id": "ex-item-6-5",
+              "category": "이메일 분석 통계 확인",
+              "criteria": "Total Emails\nQuarantined/Blocked\n222",
+              "result": "Total Emails\nQuarantined/Blocked\n222",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 5
+            },
+            {
+              "id": "ex-item-6-6",
+              "category": "이메일 분석 통계 확인",
+              "criteria": "Email Alerts: 3/25/190\n(Header/Attachment/URL)",
+              "result": "Email Alerts: 3/25/190\n(Header/Attachment/URL)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 6
+            }
+          ]
+        },
+        {
+          "id": "sec-7",
+          "title": "큐 상태 점검",
+          "sortOrder": 7,
+          "items": [
+            {
+              "id": "ex-item-7-1",
+              "category": "큐 대기 확인",
+              "criteria": "Deferred Queue\n(CLI: show email-analysis message-queue queue deferred)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "ex-item-7-2",
+              "category": "큐 대기 확인",
+              "criteria": "Active Queue\n(CLI: show email-analysis message-queue queue active)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "ex-item-7-3",
+              "category": "큐 대기 확인",
+              "criteria": "Bounced Queue\n(CLI: show email-analysis message-queue queue bounced)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            }
+          ]
+        },
+        {
+          "id": "sec-8",
+          "title": "Block-List 현황 점검",
+          "sortOrder": 8,
+          "items": [
+            {
+              "id": "ex-item-8-1",
+              "category": "Block-List 현황 확인",
+              "criteria": "Blocked List 변동 현황 확인\n(GUI : Settings - Blocked List 확인)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-report-jusung",
+      "title": "Trellix EX 정기점검 2025년 08월 보고서 (주성)",
+      "inspector": "주성엔지니어링",
+      "group": "주성엔지니어링",
+      "type": "EX",
+      "createdAt": "2025-08-01T09:00:00.000Z",
+      "updatedAt": "2026-01-10T04:14:40.306Z",
+      "sections": [
+        {
+          "id": "sec-1",
+          "title": "하드웨어 상태 점검",
+          "sortOrder": 1,
+          "items": [
+            {
+              "id": "ex-item-1-1",
+              "category": "전원 상태",
+              "criteria": "전원 공급 장치와 이중화된 전원에 문제 여부 확인\n(show system hardware status power-supply)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "ex-item-1-2",
+              "category": "FAN 상태",
+              "criteria": "모든 시스템 FAN이 정상적으로 동작하고 있는지 확인\n(CLI – show system hardware status fan)",
+              "result": "Fan 1: 4200 RPM\nFan 2: 3600 RPM\nFan 3: 4000 RPM\nFan 4: 3800 RPM\nFan 5: 3800 RPM",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "ex-item-1-3",
+              "category": "장비 온도 상태",
+              "criteria": "시스템 내부 온도가 적절한지 확인\n(CLI – show system hardware status temperature)",
+              "result": "전월: 25도\n당월: 25도",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "ex-item-1-4",
+              "category": "Disk 상태 (RAID 포함)",
+              "criteria": "디스크 인식 여부 및 RAID 상태 확인\n(CLI - show system hardware status temperature)",
+              "result": "디스크 4개 정상\nRAID 기능 정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "sec-2",
+          "title": "시스템 버전 점검",
+          "sortOrder": 2,
+          "items": [
+            {
+              "id": "ex-item-2-1",
+              "category": "Security Content",
+              "criteria": "각 Version 상태가 “OK” 이면 정상\nSecurity Content가 최근 시간에 업데이트 되었으면 정상\n\n(CLI - show fenet security-content version)\nCLI - show fenet guest-image status",
+              "result": "전월 : 1593.142\n당월 : 1601.150",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "ex-item-2-2",
+              "category": "FEOS Version",
+              "criteria": "10.0.4.1005222",
+              "result": "10.0.4.1005222",
+              "opinion": "신규 버전(11.0.0) 출시",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "ex-item-2-3",
+              "category": "Guest Image",
+              "criteria": "전월 : 24.0503\n당월 : 24.0503",
+              "result": "전월 : 24.0503\n당월 : 24.0503",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            }
+          ]
+        },
+        {
+          "id": "sec-3",
+          "title": "파일 시스템 상태 점검",
+          "sortOrder": 3,
+          "items": [
+            {
+              "id": "ex-item-3-1",
+              "category": "Disk 사용량 확인",
+              "criteria": "/config 사용량 확인\n(CLI – show files system)",
+              "result": "Space Total: 488 MB\nSpace Used: 16 MB\nSpace Free: 472 MB\nSpace Available: 442 MB\nSpace Percent Free: 96%\nInodes Percent Free: 99%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "ex-item-3-2",
+              "category": "Disk 사용량 확인",
+              "criteria": "/var 사용량 확인\n(CLI – show files system)",
+              "result": "Space Total: 64379 MB\nSpace Used: 5178 MB\nSpace Free: 59201 MB\nSpace Available: 55908 MB\nSpace Percent Free: 91%\nInodes Percent Free: 99%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "ex-item-3-3",
+              "category": "Disk 사용량 확인",
+              "criteria": "/data 사용량 확인\n(CLI – show files system)",
+              "result": "Space Total: 3102396 MB\nSpace Used: 351372 MB\nSpace Free: 2751024 MB\nSpace Available: 2593408 MB\nSpace Percent Free: 88%\nInodes Percent Free: 99%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "ex-item-3-4",
+              "category": "Disk 사용량 확인",
+              "criteria": "/data/db 사용량 확인\n(CLI – show files system)",
+              "result": "Space Total: 503836 MB\nSpace Used: 4069 MB\nSpace Free: 499768 MB\nSpace Available: 474152 MB\nSpace Percent Free: 99%\nInodes Percent Free: 99%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "sec-4",
+          "title": "시스템 상태 점검",
+          "sortOrder": 4,
+          "items": [
+            {
+              "id": "ex-item-4-1",
+              "category": "System Uptime 점검",
+              "criteria": "Uptime 시간 확인\n(CLI - show version > uptime)",
+              "result": "7d 17h 26m",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "ex-item-4-2",
+              "category": "DB 상태",
+              "criteria": "전월 대비 DB 사이즈 증감 확인\n(CLI - show health all / Database Service)",
+              "result": "DB Size\n전월: 1.41 GB\n당월: 1.45 GB",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "ex-item-4-3",
+              "category": "Memory 상태 점검",
+              "criteria": "시스템 Memory 사용량 확인\n(CLI – show memory)",
+              "result": "Physical\nUsed: 22323 MB\nFree: 41597 MB\n\nSwap\nUsed: 40 MB\nFree: 65496 MB",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "ex-item-4-4",
+              "category": "Interface 상태 확인",
+              "criteria": "사용 중인 인터페이스 활성 상태 확인\n(CLI - show interface brief)",
+              "result": "사용중인 인터페이스\n(ether1, ether2)\nLink-up 정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            },
+            {
+              "id": "ex-item-4-5",
+              "category": "데몬 상태 확인",
+              "criteria": "주요 데몬 작동 상태 확인\n(CLI – show pm process all summary)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 5
+            },
+            {
+              "id": "ex-item-4-6",
+              "category": "서비스 상태 확인",
+              "criteria": "주요 서비스 상태 확인\n(CLI - show health all)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 6
+            }
+          ]
+        },
+        {
+          "id": "sec-5",
+          "title": "네트워크 상태 점검",
+          "sortOrder": 5,
+          "items": [
+            {
+              "id": "ex-item-5-1",
+              "category": "Interface 세부 확인",
+              "criteria": "사용 중인 인터페이스 RX/TX 정보 확인\n(CLI - show interface 인터페이스명)",
+              "result": "인더페이스 - ether1\nRX error: 0 / TX error: 0\nRX discards: 0 / TX discards: 0\nRX overruns: 0 / TX overruns: 0\n\n인더페이스 - ether2\nRX error: 0 / TX error: 0\nRX discards: 0 / TX discards: 0\nRX overruns: 0 / TX overruns: 0",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "ex-item-5-2",
+              "category": "NTP 동기화 확인",
+              "criteria": "현재 시간과 동일하면 정상\n(CLI - show clock)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "ex-item-5-3",
+              "category": "트래픽 유입 확인",
+              "criteria": "MTA 인터페이스 트래픽 정상 유입 여부 확인\n(CLI : tcpdump -ni 인터페이스명 port 25)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            }
+          ]
+        },
+        {
+          "id": "sec-6",
+          "title": "이벤트 탐지 상태 점검",
+          "sortOrder": 6,
+          "items": [
+            {
+              "id": "ex-item-6-1",
+              "category": "이메일 분석 통계 확인",
+              "criteria": "이메일 통계 리포트 확인\nCLI : show email-analysis statistics)",
+              "result": "Total Emails Received : \n66773",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "ex-item-6-2",
+              "category": "이메일 분석 통계 확인",
+              "criteria": "Total Emails Bypassed : \n0",
+              "result": "Total Emails Bypassed : \n0",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "ex-item-6-3",
+              "category": "이메일 분석 통계 확인",
+              "criteria": "Received with Attachments :14999",
+              "result": "Received with Attachments :14999",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "ex-item-6-4",
+              "category": "이메일 분석 통계 확인",
+              "criteria": "Total Attachments Analyzed : \n61063",
+              "result": "Total Attachments Analyzed : \n61063",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            },
+            {
+              "id": "ex-item-6-5",
+              "category": "이메일 분석 통계 확인",
+              "criteria": "Total Emails\nQuarantined/Blocked\n222",
+              "result": "Total Emails\nQuarantined/Blocked\n222",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 5
+            },
+            {
+              "id": "ex-item-6-6",
+              "category": "이메일 분석 통계 확인",
+              "criteria": "Email Alerts: 3/25/190\n(Header/Attachment/URL)",
+              "result": "Email Alerts: 3/25/190\n(Header/Attachment/URL)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 6
+            }
+          ]
+        },
+        {
+          "id": "sec-7",
+          "title": "큐 상태 점검",
+          "sortOrder": 7,
+          "items": [
+            {
+              "id": "ex-item-7-1",
+              "category": "큐 대기 확인",
+              "criteria": "Deferred Queue\n(CLI: show email-analysis message-queue queue deferred)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "ex-item-7-2",
+              "category": "큐 대기 확인",
+              "criteria": "Active Queue\n(CLI: show email-analysis message-queue queue active)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "ex-item-7-3",
+              "category": "큐 대기 확인",
+              "criteria": "Bounced Queue\n(CLI: show email-analysis message-queue queue bounced)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            }
+          ]
+        },
+        {
+          "id": "sec-8",
+          "title": "Block-List 현황 점검",
+          "sortOrder": 8,
+          "items": [
+            {
+              "id": "ex-item-8-1",
+              "category": "Block-List 현황 확인",
+              "criteria": "Blocked List 변동 현황 확인\n(GUI : Settings - Blocked List 확인)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nx-report-jusung",
+      "title": "Trellix NX 정기점검 2025년 08월 보고서 (주성)",
+      "inspector": "주성엔지니어링",
+      "group": "주성엔지니어링",
+      "type": "NX",
+      "createdAt": "2026-01-10T04:26:25.619Z",
+      "updatedAt": "2026-01-10T04:26:25.620Z",
+      "sections": [
+        {
+          "id": "sec-1",
+          "title": "하드웨어 상태 점검",
+          "sortOrder": 1,
+          "items": [
+            {
+              "id": "item-1-1",
+              "category": "전원 상태",
+              "criteria": "전원 공급 장치와 이중화된 전원에 문제 여부 확인\n(show system hardware status power-supply)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "item-1-2",
+              "category": "FAN 상태",
+              "criteria": "모든 시스템 FAN이 정상적으로 동작하고 있는지 확인\n(CLI – show system hardware status fan)",
+              "result": "Fan 1: 6600 RPM\nFan 2: 6100 RPM\nFan 3: 6600 RPM\nFan 4: 6200 RPM\nFan 5: 6400 RPM",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "item-1-3",
+              "category": "장비 온도 상태",
+              "criteria": "시스템 내부 온도가 적절한지 확인\n(CLI – show system hardware status temperature)",
+              "result": "전월: 24도\n당월: 26도",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "item-1-4",
+              "category": "Disk 상태 (RAID 포함)",
+              "criteria": "디스크 인식 여부 및 RAID 상태 확인\n(CLI - show system hardware status raid)",
+              "result": "디스크 2개 정상\nRAID 기능 정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "sec-2",
+          "title": "시스템 버전 점검",
+          "sortOrder": 2,
+          "items": [
+            {
+              "id": "item-2-1",
+              "category": "Security Content",
+              "criteria": "각 Version 상태가 “OK” 이면 정상\nSecurity Content가 최근 시간에 업데이트 되었으면 정상\n(CLI - show fenet security-content version)",
+              "result": "전월 : 1593.128\n당월 : 1601.150",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "item-2-2",
+              "category": "FEOS Version",
+              "criteria": "현재 버전 확인",
+              "result": "10.0.4.1005222",
+              "opinion": "신규 버전(11.0.0) 출시",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "item-2-3",
+              "category": "Guest Image",
+              "criteria": "현재 버전 확인",
+              "result": "전월 : 24.0503\n당월 : 24.0503",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            }
+          ]
+        },
+        {
+          "id": "sec-3",
+          "title": "파일 시스템 상태 점검",
+          "sortOrder": 3,
+          "items": [
+            {
+              "id": "item-3-1",
+              "category": "Disk 사용량 확인",
+              "criteria": "/config 사용량 확인\n(CLI – show files system)",
+              "result": "Space Total: 488 MB\nSpace Used: 14 MB\nSpace Free: 474 MB\nSpace Available: 445 MB\nSpace Percent Free: 97%\nInodes Percent Free: 99%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "item-3-2",
+              "category": "Disk 사용량 확인",
+              "criteria": "/var 사용량 확인\n(CLI – show files system)",
+              "result": "Space Total: 96633 MB\nSpace Used: 6847 MB\nSpace Free: 89786 MB\nSpace Available: 84855 MB\nSpace Percent Free: 92%\nInodes Percent Free: 99%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "item-3-3",
+              "category": "Disk 사용량 확인",
+              "criteria": "/data 사용량 확인\n(CLI – show files system)",
+              "result": "Space Total: 3070647 MB\nSpace Used: 334815 MB\nSpace Free: 2735832 MB\nSpace Available: 2579828 MB\nSpace Percent Free: 89%\nInodes Percent Free: 99%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "item-3-4",
+              "category": "Disk 사용량 확인",
+              "criteria": "/data/db 사용량 확인\n(CLI – show files system)",
+              "result": "Space Total: 503836 MB\nSpace Used: 4752 MB\nSpace Free: 499084 MB\nSpace Available: 473468 MB\nSpace Percent Free: 99%\nInodes Percent Free: 99%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "sec-4",
+          "title": "시스템 상태 점검",
+          "sortOrder": 4,
+          "items": [
+            {
+              "id": "item-4-1",
+              "category": "System Uptime 점검",
+              "criteria": "Uptime 시간 확인\n(CLI - show version > uptime)",
+              "result": "309d 19h 9m",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "item-4-2",
+              "category": "DB 상태",
+              "criteria": "전월 대비 DB 사이즈 증감 확인\n(CLI - show health all / Database Service)",
+              "result": "DB Size\n전월: 1.64 GB\n당월: 1.32 GB",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "item-4-3",
+              "category": "Memory 상태 점검",
+              "criteria": "시스템 Memory 사용량 확인\n(CLI – show memory)",
+              "result": "Physical\nUsed: 36815 MB\nFree: 27105 MB\n\nSwap\nUsed: 1163 MB\nFree: 64373 MB",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "item-4-4",
+              "category": "Interface 상태 확인",
+              "criteria": "사용 중인 인터페이스 활성 상태 확인\n(CLI - show interface brief)",
+              "result": "사용중인 인터페이스\n(ether1, ether2, pether3, pether5)\nLink-up 정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            },
+            {
+              "id": "item-4-5",
+              "category": "데몬 상태 확인",
+              "criteria": "주요 데몬 작동 상태 확인\n(CLI – show pm process all summary)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 5
+            },
+            {
+              "id": "item-4-6",
+              "category": "서비스 상태 확인",
+              "criteria": "주요 서비스 상태 확인\n(CLI - show health all)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 6
+            }
+          ]
+        },
+        {
+          "id": "sec-5",
+          "title": "네트워크 상태 점검",
+          "sortOrder": 5,
+          "items": [
+            {
+              "id": "item-5-1",
+              "category": "Interface 세부 확인",
+              "criteria": "사용 중인 인터페이스 RX/TX 정보 확인\n(CLI - show interface 인터페이스명)",
+              "result": "인더페이스 - ether1\nRX error: 0 / TX error: 0\nRX discards: 0/ TX discards: 0\nRX overruns: 0 / TX overruns: 0\n\n인더페이스 - ether2\nRX error: 0 / TX error: 0\nRX discards: 0 / TX discards: 0\nRX overruns: 0 / TX overruns: 0\n\n인더페이스 - pether3\nRX error: 0 / TX error: 0\nRX discards: 6158 / TX discards: 0\nRX overruns: 0 / TX overruns: 0\n\n인더페이스 - pether5\nRX error: 0 / TX error: 0\nRX discards: 1549 / TX discards: 0\nRX overruns: 0 / TX overruns: 0",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "item-5-2",
+              "category": "NTP 동기화 확인",
+              "criteria": "현재 시간과 동일하면 정상\n(CLI - show clock)",
+              "result": "정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "item-5-3",
+              "category": "트래픽 유입 확인",
+              "criteria": "SPAN/TAP Interface로부터 트래픽 정상 유입 여부 확인\n(CLI : tcpdump -ni 인터페이스명)",
+              "result": "pether3: 정상\npether5: 정상",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "item-5-4",
+              "category": "트래픽 양 확인",
+              "criteria": "Total Bandwidth 확인 (GUI - Dashboard)\n최대치가 237 Mbps 이하면 정상",
+              "result": "11시: 212Mbps",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hx-report-lsautomotive",
+      "title": "Trellix HX 정기점검 2025년 08월 보고서 (LS Automotive)",
+      "inspector": "주성엔지니어링",
+      "group": "LS Automotive",
+      "type": "HX",
+      "createdAt": "2026-01-10T04:29:45.094Z",
+      "updatedAt": "2026-01-10T04:29:45.094Z",
+      "sections": [
+        {
+          "id": "hx-sec-1",
+          "title": "하드웨어 상태 점검",
+          "sortOrder": 1,
+          "items": [
+            {
+              "id": "hx-item-1-1",
+              "category": "전원 상태",
+              "criteria": "전원 공급 장치와 이중화 상태 정상 여부 확인\n(CLI - show system hardware-status power-supply)",
+              "result": "Overall power status: Good",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "hx-item-1-2",
+              "category": "FAN 상태",
+              "criteria": "전체 시스템 FAN 정상 동작 여부 확인\n(CLI - show system hardware-status fan)",
+              "result": "Overall fan health: healthySystem\n개별 FAN 상태:\n- Fan 1: 8200 RPM (Ok)\n- Fan 2: 7900 RPM (Ok)\n- Fan 3: 8300 RPM (Ok)\n- Fan 4: 7800 RPM (Ok)\n- Fan 5: 7800 RPM (Ok)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "hx-item-1-3",
+              "category": "장비 온도 상태",
+              "criteria": "시스템 내부 온도 적정 여부 확인\n(CLI - show system hardware status temperature)",
+              "result": "System Temperature: 32°C (범위: 0-80°C, 상태: Good)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "hx-item-1-4",
+              "category": "Disk 상태 (RAID 포함)",
+              "criteria": "디스크 인식 여부 및 RAID 상태 확인\n(CLI - show system hardware status raid)",
+              "result": "Overall raid status: Good\n디스크 상태:\n- Disk 0: Online\n- Disk 1: Online\n- Disk 2: Online\n- Disk 3: Online",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "hx-sec-2",
+          "title": "시스템 버전 점검 (서버)",
+          "sortOrder": 2,
+          "items": [
+            {
+              "id": "hx-item-2-1",
+              "category": "Security Content",
+              "criteria": "시스템 주요 구성요소의 버전 업데이트 정상 여부 확인",
+              "result": "Security Content Version: 921.102",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "hx-item-2-2",
+              "category": "FEOS Version",
+              "criteria": "FEOS Version",
+              "result": "FEOS Version: 10.0.2.1007339",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "hx-item-2-3",
+              "category": "IPMI Version",
+              "criteria": "IPMI Version",
+              "result": "3.11",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            }
+          ]
+        },
+        {
+          "id": "hx-sec-3",
+          "title": "시스템 버전 점검 (에이전트)",
+          "sortOrder": 3,
+          "items": [
+            {
+              "id": "hx-item-3-1",
+              "category": "Windows",
+              "criteria": "서버에 다운로드 된 가장 최신의 Windows Agent 버전을 기준으로 설정",
+              "result": "36.30.17",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "hx-item-3-2",
+              "category": "Linux",
+              "criteria": "서버에 다운로드 된 가장 최신의 Linux Agent 버전을 기준으로 설정",
+              "result": "36.30.17",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "hx-item-3-3",
+              "category": "macOS",
+              "criteria": "서버에 다운로드 된 가장 최신의 macOS Agent 버전을 기준으로 설정",
+              "result": "36.30.17",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            }
+          ]
+        },
+        {
+          "id": "hx-sec-4",
+          "title": "파일 시스템 상태 점검",
+          "sortOrder": 4,
+          "items": [
+            {
+              "id": "hx-item-4-1",
+              "category": "/config 사용량 확인",
+              "criteria": "/config 파일시스템 사용량 확인\n(CLI - show files system)",
+              "result": "사용량: 1.8% (9MB/488MB)\n여유공간: 98%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "hx-item-4-2",
+              "category": "/var 사용량 확인",
+              "criteria": "/var 파일시스템 사용량 확인\n(CLI - show files system)",
+              "result": "사용량: 55.4% (53510MB/96633MB)\n여유공간: 44%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "hx-item-4-3",
+              "category": "/data 사용량 확인",
+              "criteria": "/data 파일시스템 사용량 확인\n(CLI - show files system)",
+              "result": "사용량: 23.7% (1629935MB/6879855MB)\n여유공간: 76%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "hx-item-4-4",
+              "category": "/data/db 사용량 확인",
+              "criteria": "/data/db 파일시스템 사용량 확인\n(CLI - show files system)",
+              "result": "사용량: 24.9% (125312MB/503836MB)\n여유공간: 75%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "hx-sec-5",
+          "title": "시스템 상태 점검",
+          "sortOrder": 5,
+          "items": [
+            {
+              "id": "hx-item-5-1",
+              "category": "System Uptime",
+              "criteria": "Uptime 시간 확인\n(CLI - show version)",
+              "result": "System Uptime: 178d 13h 27m 58.208s\nCPU load averages: 4.35 / 4.42 / 4.76",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "hx-item-5-2",
+              "category": "DB 상태",
+              "criteria": "전월 대비 DB 사이즈 증감 확인\n(CLI - show health all / Database Service)",
+              "result": "KyotoDB Casket File Status: Healthy - Kyoto DB size is 13M",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "hx-item-5-3",
+              "category": "Memory 상태 점검",
+              "criteria": "시스템 Memory 상태 확인\n(CLI - show memory)",
+              "result": "Physical Memory: 12417MB 사용/64046MB 전체 (19.4% 사용중)\nSwap Memory: 37919MB 사용/65536MB 전체 (57.9% 사용중)\nSystem Buffers: 540MB\nSystem Cache: 47650MB\nTotal Buffers/Cache: 48190MB",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "hx-item-5-4",
+              "category": "Interface 상태 확인",
+              "criteria": "사용 중인 인터페이스 활성 상태 확인\n(CLI - show interface 인터페이스명)",
+              "result": "ether1: Admin(yes), Link(yes), IP(10.125.12.223), Speed(1000Mb/s (auto))\nether2: Admin(no), Link(no)\nether3: Admin(no), Link(no)\nether4: Admin(no), Link(no)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            },
+            {
+              "id": "hx-item-5-5",
+              "category": "데몬 상태 확인",
+              "criteria": "주요 데몬 작동 상태 확인\n(CLI - show pm process all summary)",
+              "result": "총 89개 프로세스 (실행중: 57개, 중지: 9개)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 5
+            },
+            {
+              "id": "hx-item-5-6",
+              "category": "주요 서비스 상태 확인",
+              "criteria": "주요 서비스 상태 확인\n(CLI - show health all)",
+              "result": "전체 서비스: 20개, 정상: 12개\n비정상 서비스:\nLicenses Monitoring: Critical\nSecurity Contents: Warning\nDisk Storage: Warning\nHelix Datastreaming: Disabled\nStore and Forward Cluster Connectivity: Warning\nConcurrent Host Limit and Sysinfo Interval: Warning\nHelixConnect: Disabled\nApplication Processor: Critical",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 6
+            }
+          ]
+        },
+        {
+          "id": "hx-sec-6",
+          "title": "네트워크 상태 점검",
+          "sortOrder": 6,
+          "items": [
+            {
+              "id": "hx-item-6-1",
+              "category": "Interface 세부 확인",
+              "criteria": "사용 중인 인터페이스 Rx/Tx 정보 확인\n(CLI - show interface 인터페이스명)",
+              "result": "Interface ether1:\n- Admin up: yes, Link up: yes\n- IP Address: 10.125.12.223\n- Speed: 1000Mb/s (auto)\n- Rx: 1293655531126 bytes / 5585389583 packets\n- Tx: 2638102000546 bytes / 5443110802 packets",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "hx-item-6-2",
+              "category": "NTP 동기화 확인",
+              "criteria": "점검 시점의 시간과 일치하면 정상\n(CLI - show clock)",
+              "result": "현재 시간: 2025/12/15 08:45:45 (Asia Southeast Seoul)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            }
+          ]
+        },
+        {
+          "id": "hx-sec-7",
+          "title": "이벤트 탐지 (엔진별)",
+          "sortOrder": 7,
+          "items": [
+            {
+              "id": "hx-item-7-1",
+              "category": "Malware Protection",
+              "criteria": "Malware Protection 알림 발생 건수",
+              "result": "0",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "hx-item-7-2",
+              "category": "Exploit Guard",
+              "criteria": "Exploit Guard 알림 발생 건수",
+              "result": "0",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "hx-item-7-3",
+              "category": "Real-Time indicator detection",
+              "criteria": "Real-Time indicator detection 알림 발생 건수",
+              "result": "0",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "hx-item-7-4",
+              "category": "Others",
+              "criteria": "Others 알림 발생 건수",
+              "result": "0",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "hx-sec-8",
+          "title": "Acquisitions (타입별)",
+          "sortOrder": 8,
+          "items": [
+            {
+              "id": "hx-item-8-1",
+              "category": "File",
+              "criteria": "File 수집 요청 건수",
+              "result": "46",
+              "opinion": "Failed 15건",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "hx-item-8-2",
+              "category": "Quarantine",
+              "criteria": "Quarantine 수집 요청 건수",
+              "result": "11",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "hx-item-8-3",
+              "category": "Triage",
+              "criteria": "Triage 수집 요청 건수",
+              "result": "900",
+              "opinion": "Failed 3건",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "hx-item-8-4",
+              "category": "Data",
+              "criteria": "Data 수집 요청 건수",
+              "result": "1",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            },
+            {
+              "id": "hx-item-8-5",
+              "category": "Agent Diagnostics",
+              "criteria": "Agent Diagnostics 수집 요청 건수",
+              "result": "0",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hx-report-lsitc-1768031154159",
+      "title": "Trellix HX 정기점검 2025년 12월 보고서",
+      "inspector": "김진수 (인더포레스트)",
+      "group": "LSITC",
+      "type": "HX",
+      "createdAt": "2025-12-15T09:00:00.000Z",
+      "updatedAt": "2026-01-10T07:56:40.207Z",
+      "customInfo": {
+        "customer": {
+          "name": "LS ITC",
+          "support": "(주) 인더포레스트",
+          "inspector": "김진수",
+          "date": "2025년 12월 15일",
+          "phone": "010-8766-2024",
+          "type": "■ 월\n□ 분기\n□ 특별",
+          "note": ""
+        },
+        "system": {
+          "product": "Trellix HX",
+          "equipment": "LS-HX1",
+          "version": "10.0.2.1007339",
+          "customer": "LS ITC",
+          "usage": "Endpoint Security Protection System"
+        },
+        "license": {
+          "appliance": "HX4502",
+          "serial": "FZ2022QA6PF",
+          "id": "AC1F6BD75160",
+          "endDate": "2026-02-28",
+          "features": [
+            "FIREEYE_SUPPORT",
+            "HX_ADVANCED",
+            "CONTENT_UPDATES",
+            "FIREEYE_APPLIANCE"
+          ]
+        },
+        "summary": {
+          "result": "[점검 결과]\n■ 아래 2건의 오류 해결을 위해 HX 장비 재부팅 작업 예정 (작업 일시 : 12/16(화) 18:00 ~ 20:00)\n  - 127.0.0.1:8080 ECONNREFUSED error is still occurring. 오류\n  - WebUI 콘솔의 Host Management 메뉴에서 자산 정보 확인 안되는 문제\n■ 신규 Software Version릴리즈 (Ver 10.0.5)",
+          "note": "[비고]\n※ Malware 이벤트 발생 및 격리 건 모니터링 요망"
+        }
+      },
+      "sections": [
+        {
+          "id": "54a1fc02-82f6-4bfb-8274-3f96356d82ba",
+          "title": "하드웨어 상태 점검",
+          "sortOrder": 1,
+          "items": [
+            {
+              "id": "c9dbc633-c7b0-4d2d-83d0-aed065298bf7",
+              "category": "전원 상태",
+              "criteria": "전원 공급 장치와 이중화 상태 정상 여부 확인\n(CLI - show system hardware-status power-supply)",
+              "result": "Overall power status: Good",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "e9fc0f46-c4d8-48e5-b582-ae72b8f0749a",
+              "category": "FAN 상태",
+              "criteria": "전체 시스템 FAN 정상 동작 여부 확인\n(CLI - show system hardware-status fan)",
+              "result": "Overall fan health: healthySystem\n개별 FAN 상태:\n- Fan 1: 8200 RPM (Ok)\n- Fan 2: 7900 RPM (Ok)\n- Fan 3: 8300 RPM (Ok)\n- Fan 4: 7800 RPM (Ok)\n- Fan 5: 7800 RPM (Ok)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "c52d650e-3644-4774-9ec4-da6a4d4d778f",
+              "category": "장비 온도 상태",
+              "criteria": "시스템 내부 온도 적정 여부 확인\n(CLI - show system hardware status temperature)",
+              "result": "System Temperature: 32°C (범위: 0-80°C, 상태: Good)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "48272744-c20d-451c-a82b-6236a792f97b",
+              "category": "Disk 상태 (RAID 포함)",
+              "criteria": "디스크 인식 여부 및 RAID 상태 확인\n(CLI - show system hardware status raid)",
+              "result": "Overall raid status: Good\n디스크 상태:\n- Disk 0: Online\n- Disk 1: Online\n- Disk 2: Online\n- Disk 3: Online",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "cc4ba38d-dccc-4cc6-bb56-93f7f30bb082",
+          "title": "시스템 버전 점검 (서버)",
+          "sortOrder": 2,
+          "items": [
+            {
+              "id": "0715ee40-0d3e-413a-bc0e-26c6ab3d1cba",
+              "category": "Security Content",
+              "criteria": "시스템 주요 구성요소의 버전 업데이트 정상 여부 확인",
+              "result": "Security Content Version: 921.102",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "54ace611-f375-42da-973e-32cf6fb03140",
+              "category": "FEOS Version",
+              "criteria": "시스템 주요 구성요소의 버전 업데이트 정상 여부 확인",
+              "result": "FEOS Version: 10.0.2.1007339",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "4fe44f17-bed6-4113-9abc-b92a244bae32",
+              "category": "IPMI Version",
+              "criteria": "시스템 주요 구성요소의 버전 업데이트 정상 여부 확인",
+              "result": "3.11",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            }
+          ]
+        },
+        {
+          "id": "b8b18b88-ed85-46a7-8b52-a18594cac9c6",
+          "title": "시스템 버전 점검 (에이전트)",
+          "sortOrder": 3,
+          "items": [
+            {
+              "id": "b7e2fa83-4666-47db-b8fd-937c05287ccc",
+              "category": "Windows",
+              "criteria": "서버에 다운로드 된 가장 최신의 Windows Agent 버전을 기준으로 설정",
+              "result": "36.30.17",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "a265d8fb-e764-4aa8-a8f4-17dbacaa7458",
+              "category": "Linux",
+              "criteria": "서버에 다운로드 된 가장 최신의 Linux Agent 버전을 기준으로 설정",
+              "result": "36.30.17",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "15e13b46-1838-4723-ae3e-0c4b95ffc2a1",
+              "category": "macOS",
+              "criteria": "서버에 다운로드 된 가장 최신의 macOS Agent 버전을 기준으로 설정",
+              "result": "36.30.17",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            }
+          ]
+        },
+        {
+          "id": "8ba3837f-0988-435a-8c91-682bd5c74109",
+          "title": "파일 시스템 상태 점검",
+          "sortOrder": 4,
+          "items": [
+            {
+              "id": "ed60eac4-e31c-4a27-91ca-e212c205f381",
+              "category": "/config 사용량 확인",
+              "criteria": "/config 파일시스템 사용량 확인\n(CLI - show files system)",
+              "result": "사용량: 1.8% (9MB/488MB)\n여유공간: 98%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "2abab7ac-d181-4211-b3d8-27ea896d4dce",
+              "category": "/var 사용량 확인",
+              "criteria": "/var 파일시스템 사용량 확인\n(CLI - show files system)",
+              "result": "사용량: 55.4% (53510MB/96633MB)\n여유공간: 44%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "36da79f8-6338-4f29-baeb-d9f446d398ff",
+              "category": "/data 사용량 확인",
+              "criteria": "/data 파일시스템 사용량 확인\n(CLI - show files system)",
+              "result": "사용량: 23.7% (1629935MB/6879855MB)\n여유공간: 76%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "9b53963f-726a-4c3e-b56e-98813cc26a18",
+              "category": "/data/db 사용량 확인",
+              "criteria": "/data/db 파일시스템 사용량 확인\n(CLI - show files system)",
+              "result": "사용량: 24.9% (125312MB/503836MB)\n여유공간: 75%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "f83f78e7-fe96-461c-8136-0fe7a4e10e1a",
+          "title": "시스템 상태 점검",
+          "sortOrder": 5,
+          "items": [
+            {
+              "id": "72409a9f-51fc-4bb7-8e5f-b7c0fd99477e",
+              "category": "System Uptime",
+              "criteria": "Uptime 시간 확인\n(CLI - show version)",
+              "result": "System Uptime: 178d 13h 27m 58.208s\nCPU load averages: 4.35 / 4.42 / 4.76",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "4242eec1-69c7-4d42-b3c0-9dbfec621545",
+              "category": "DB 상태",
+              "criteria": "전월 대비 DB 사이즈 증감 확인\n(CLI - show health all / Database Service)",
+              "result": "KyotoDB Casket File Status: Healthy - Kyoto DB size is 13M",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "ad265799-9ef4-47a4-b721-ffcf6a8c14e6",
+              "category": "Memory 상태 점검",
+              "criteria": "시스템 Memory 상태 확인\n(CLI - show memory)",
+              "result": "Physical Memory: 12417MB 사용/64046MB 전체 (19.4% 사용중)\nSwap Memory: 37919MB 사용/65536MB 전체 (57.9% 사용중)\nSystem Buffers: 540MB\nSystem Cache: 47650MB\nTotal Buffers/Cache: 48190MB",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "caec9bed-8e91-464e-8f30-34883df59298",
+              "category": "Interface 상태 확인",
+              "criteria": "사용 중인 인터페이스 활성 상태 확인\n(CLI - show interface 인터페이스명)",
+              "result": "ether1: Admin(yes), Link(yes), IP(10.125.12.223), Speed(1000Mb/s (auto))\nether2: Admin(no), Link(no)\nether3: Admin(no), Link(no)\nether4: Admin(no), Link(no)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            },
+            {
+              "id": "180db63a-53b2-432a-83c5-c45b67302bd8",
+              "category": "데몬 상태 확인",
+              "criteria": "주요 데몬 작동 상태 확인\n(CLI - show pm process all summary)",
+              "result": "총 89개 프로세스 (실행중: 57개, 중지: 9개)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 5
+            },
+            {
+              "id": "713597e2-0df4-4ec9-b55f-73e1e329f2ba",
+              "category": "주요 서비스 상태 확인",
+              "criteria": "주요 서비스 상태 확인\n(CLI - show health all)",
+              "result": "전체 서비스: 20개, 정상: 12개\n비정상 서비스:\n- Licenses Monitoring: Critical\n- Security Contents: Warning\n- Disk Storage: Warning\n- Helix Datastreaming: Disabled\n- Store and Forward Cluster Connectivity: Warning\n- Concurrent Host Limit and Sysinfo Interval: Warning\n- HelixConnect: Disabled\n- Application Processor: Critical",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 6
+            }
+          ]
+        },
+        {
+          "id": "e19e9dfa-3bea-4e3d-a0f1-b12a6b1dd494",
+          "title": "네트워크 상태 점검",
+          "sortOrder": 6,
+          "items": [
+            {
+              "id": "1b140aa1-c011-49e1-9765-a5e59b24f818",
+              "category": "Interface 세부 확인",
+              "criteria": "사용 중인 인터페이스 Rx/Tx 정보 확인\n(CLI - show interface 인터페이스명)",
+              "result": "Interface ether1:\n- Admin up: yes, Link up: yes\n- IP Address: 10.125.12.223\n- Speed: 1000Mb/s (auto)\n- Rx: 1293655531126 bytes / 5585389583 packets\n- Tx: 2638102000546 bytes / 5443110802 packets",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "9fdcaf27-e505-4500-876d-a739b70cc3e7",
+              "category": "NTP 동기화 확인",
+              "criteria": "점검 시점의 시간과 일치하면 정상\n(CLI - show clock)",
+              "result": "현재 시간: 2025/12/15 08:45:45 (Asia Southeast Seoul)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            }
+          ]
+        },
+        {
+          "id": "904dcd09-ba47-43a7-a027-3c0dd77808e4",
+          "title": "이벤트 탐지 (엔진별)",
+          "sortOrder": 7,
+          "items": [
+            {
+              "id": "b7f349cc-970d-465b-8771-363bfa5219db",
+              "category": "Malware Protection",
+              "criteria": "Malware Protection 알림 발생 건수",
+              "result": "0",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "c45f594a-b772-4346-9d76-a1850fbeb844",
+              "category": "Exploit Guard",
+              "criteria": "Exploit Guard 알림 발생 건수",
+              "result": "0",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "1cc2cfc8-48ce-4d74-80a9-0c752ee161bf",
+              "category": "Real-Time indicator detection",
+              "criteria": "Real-Time indicator detection 알림 발생 건수",
+              "result": "0",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "2fe26a9c-fca3-4d8d-8c09-0cf1fc3334a7",
+              "category": "Others",
+              "criteria": "Others 알림 발생 건수",
+              "result": "0",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "81b00369-2dc7-4a50-9d36-47dc2e6f20ba",
+          "title": "Acquisitions (타입별)",
+          "sortOrder": 8,
+          "items": [
+            {
+              "id": "67d81ad9-3e6d-4b7b-88df-7c8230cbaa50",
+              "category": "File",
+              "criteria": "File 수집 요청 건수",
+              "result": "46",
+              "opinion": "Failed 15건",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "3afb7b34-7e9a-4103-b725-b738852fc7b7",
+              "category": "Quarantine",
+              "criteria": "Quarantine 수집 요청 건수",
+              "result": "11",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "a1027a07-1bb1-4708-96de-bae59fd71fc3",
+              "category": "Triage",
+              "criteria": "Triage 수집 요청 건수",
+              "result": "900",
+              "opinion": "Failed 3건",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "aec7d82b-f4a4-47af-b7cc-15c33988ddb4",
+              "category": "Data",
+              "criteria": "Data 수집 요청 건수",
+              "result": "1",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            },
+            {
+              "id": "280cf1bd-803f-44ba-90ab-8b8391b686ae",
+              "category": "Agent Diagnostics",
+              "criteria": "Agent Diagnostics 수집 요청 건수",
+              "result": "0",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cm-report-lsitc-1768031800996",
+      "title": "Trellix CMS 장비 점검 보고서",
+      "inspector": "김진수 (인더포레스트)",
+      "group": "LSITC",
+      "type": "CM",
+      "createdAt": "2025-12-15T09:00:00.000Z",
+      "updatedAt": "2026-01-10T10:07:48.459Z",
+      "customInfo": {
+        "customer": {
+          "name": "LS ITC",
+          "support": "(주) 인더포레스트",
+          "inspector": "김진수",
+          "date": "2025년 12월 15일",
+          "phone": "010-8766-2024",
+          "type": "■ 월\n□ 분기\n□ 특별",
+          "note": ""
+        },
+        "system": {
+          "product": "Trellix CMS",
+          "equipment": "LS-CM",
+          "version": "FEOS Version: 10.0.4.1005222",
+          "customer": "LS ITC",
+          "usage": "Central Management System"
+        },
+        "license": {
+          "appliance": "CM4500",
+          "serial": "FZ2215QA8GB",
+          "id": "3CECEF8F389A",
+          "endDate": "2027-06-18",
+          "features": [
+            "FIREEYE_APPLIANCE",
+            "FIREEYE_SUPPORT",
+            "CONTENT_UPDATES"
+          ]
+        },
+        "summary": {
+          "result": "[점검 결과]\n- /var 디렉토리 가용 공간 33% (전월: 32%)\n- RX discards: 163, RX overruns: 1636",
+          "note": "[비고]\n※ /var 디렉토리 가용량 저하 지속 모니터링 필요"
+        }
+      },
+      "sections": [
+        {
+          "id": "c511d3e0-e88e-4845-a50c-4997906073f6",
+          "title": "하드웨어 상태 점검",
+          "sortOrder": 1,
+          "items": [
+            {
+              "id": "e4fb9854-eff0-43ef-8a19-e1eaa12e77c9",
+              "category": "하드웨어 상태 점검",
+              "criteria": "전원 공급 및 하드웨어 전원 상태 확인\n(CLI - show system hardware status power-supply)",
+              "result": "Overall power status: Good",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "6468f514-6541-4c2d-9af9-3c0217e8bde2",
+              "category": "하드웨어 상태 점검",
+              "criteria": "시스템 쿨링팬 동작 상태 확인\n(CLI - show system hardware status fan)",
+              "result": "Overall fan health: healthySystem\n개별 FAN 상태:\n- Fan 1: 6700 RPM (Ok)\n- Fan 2: 6300 RPM (Ok)\n- Fan 3: 6200 RPM (Ok)\n- Fan 4: 6600 RPM (Ok)\n- Fan 5: 6100 RPM (Ok)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "56bea919-171d-4cff-8a04-8f1604274e89",
+              "category": "하드웨어 상태 점검",
+              "criteria": "시스템 내부 온도가 적정한지 확인\n(CLI - show system hardware status temperature)",
+              "result": "System Temperature: 30°C (범위: 0-80°C, 상태: Good)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "77537cb8-b7c1-4dd7-9e9b-0f35aed957b6",
+              "category": "하드웨어 상태 점검",
+              "criteria": "디스크 인식 여부 및 RAID 상태 확인\n(CLI - show system hardware status raid)",
+              "result": "Overall raid status: Good\n\n디스크 상태:\n- Disk 0: Online\n- Disk 1: Online\n- Disk 2: Online\n- Disk 3: Online",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            },
+            {
+              "id": "06d611d2-3028-404e-9d3e-20401e1f7cd2",
+              "category": "시스템 버전 점검",
+              "criteria": "Security Content가 최근 시간에 업데이트 되었는지 점검\n(CLI - show fenet security-content version)",
+              "result": "Security Content Version: 122.102",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 5
+            },
+            {
+              "id": "0146e080-7fcb-4268-99f4-7c62235408b1",
+              "category": "시스템 버전 점검",
+              "criteria": "FEOS Version 상태 확인\n(CLI - show fenet image version)",
+              "result": "FEOS Version: 10.0.4.1005222",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 6
+            },
+            {
+              "id": "a51854b1-b8c7-4c73-863e-bff756e376c2",
+              "category": "파일 시스템 상태 점검",
+              "criteria": "/config 파일 시스템 사용량 확인\n(CLI - show files system)",
+              "result": "사용량: 1.8% (9MB/488MB)\n여유공간: 98% (479MB)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 7
+            },
+            {
+              "id": "183f0dd8-0e74-4609-91c6-c9b9ee6fac17",
+              "category": "파일 시스템 상태 점검",
+              "criteria": "/var 파일 시스템 사용량 확인\n(CLI - show files system)",
+              "result": "사용량: 66.2% (21279MB/32126MB)\n여유공간: 33% (10847MB)",
+              "opinion": "가용공간 32% 수준",
+              "isDeleted": false,
+              "sortOrder": 8
+            },
+            {
+              "id": "de87beef-4cde-48ac-98b6-dfdb3dfe7819",
+              "category": "파일 시스템 상태 점검",
+              "criteria": "/data 파일 시스템 사용량 확인\n(CLI - show files system)",
+              "result": "사용량: 1.1% (50160MB/4476489MB)\n여유공간: 98% (4426329MB)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 9
+            },
+            {
+              "id": "02dbb019-acb7-4de3-a25d-ec7ed4ba42ae",
+              "category": "파일 시스템 상태 점검",
+              "criteria": "/data/db 파일 시스템 사용량 확인\n(CLI - show files system)",
+              "result": "사용량: 5.2% (154291MB/2952781MB)\n여유공간: 94% (2798490MB)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 10
+            },
+            {
+              "id": "fce5a620-c03c-4965-8df6-538e1d88844b",
+              "category": "시스템 상태 점검",
+              "criteria": "Uptime 시간 확인\n(CLI - show version)",
+              "result": "시스템 가동 시간: 211d 18h 39m 23.136s",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 11
+            },
+            {
+              "id": "61752c38-972d-4f7c-81a0-9226071366a0",
+              "category": "시스템 상태 점검",
+              "criteria": "전체 대비 DB 서비스 정상 확인\n(CLI - show health all / Database Service)",
+              "result": "Database Service: Healthy - DB 크기: 77.84735870361328 GB, 여유공간: 2586.4011459350586 GB",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 12
+            },
+            {
+              "id": "204d1c21-81d7-48ff-b506-07fab42d351a",
+              "category": "시스템 상태 점검",
+              "criteria": "시스템 Memory 사용량 확인\n(CLI - show memory)",
+              "result": "Physical Memory:\n사용량: 24.1% (15407MB/64046MB)\n여유공간: 75.9% (48639MB)\n\nSwap Memory:\n사용량: 0.0% (17MB/65536MB)\n여유공간: 100.0% (65519MB)\n\nMemory Cache:\nBuffers: 421 MB, Cache: 46690 MB",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 13
+            },
+            {
+              "id": "0162b7f0-c6ce-4cdf-878f-4e1663f04448",
+              "category": "시스템 상태 점검",
+              "criteria": "사용 중인 인터페이스 활성 상태 확인\n(CLI - show interfaces)",
+              "result": "총 4개 인터페이스 (Admin Up: 1개, Link Up: 1개)\n주요 인터페이스:\n  lo: UP (127.0.0.1)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 14
+            },
+            {
+              "id": "e5b072c4-8332-4c40-9666-9f059050fc00",
+              "category": "시스템 상태 점검",
+              "criteria": "주요 데몬 작동 상태 확인\n(CLI - show pm process all summary)",
+              "result": "총 79개 프로세스 (실행중: 46개, 중지: 12개)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 15
+            },
+            {
+              "id": "4fb7c4c2-d072-486c-9bd9-c3228ca37eeb",
+              "category": "시스템 상태 점검",
+              "criteria": "센서 장비 연동 상태 확인\n(CLI - show cmc appliances)",
+              "result": "총 5개 Appliance (활성: 5개, 연결됨: 5개)\n\n어플라이언스 상태:\n\n- LS-EX1: 활성 & 연결됨 (10.125.11.211)\n- LS-EX2: 활성 & 연결됨 (10.125.11.212)\n- LS-HX1: 활성 & 연결됨 (10.125.12.223)\n- LSG-INT-NX: 활성 & 연결됨 (10.51.0.152)\n- LSG-SDN-APT: 활성 & 연결됨 (10.51.0.153)\n- ITC-INT-APT1 활성 & 연결됨 (10.51.0.88)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 16
+            },
+            {
+              "id": "755c7142-f149-4f6a-9f27-288bacd359e0",
+              "category": "시스템 상태 점검",
+              "criteria": "주요 서비스 상태 확인\n(CLI - show health all)",
+              "result": "전체 서비스: 12개, 정상: 10개\n비정상 서비스:\nIPS Policy Sync Engine: Critical\nCMSHA Fedb Sync health: Disabled",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 17
+            },
+            {
+              "id": "bb345697-0980-4d39-a021-4b6207338742",
+              "category": "네트워크 상태 점검",
+              "criteria": "사용 중인 인터페이스 Rx/Tx 정보 확인\n(CLI - show interface <인터페이스명>)",
+              "result": "Interface unknown RX/TX 정보:\n상태: Admin unknown, Link unknown\nIP 주소: N/A\n속도: unknown",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 18
+            },
+            {
+              "id": "ffe75474-8d86-43b5-8149-759d9d89fbfd",
+              "category": "네트워크 상태 점검",
+              "criteria": "현재 시간과 동일하면 정상\n(CLI - show clock)",
+              "result": "현재 시간: 2025/12/15 08:52:18 (Asia Southeast Seoul)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 19
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-report-lsitc-1768036514186",
+      "title": "Trellix EX 장비 점검 보고서",
+      "inspector": "김진수",
+      "group": "LSITC",
+      "type": "EX",
+      "createdAt": "2025-12-15T09:00:00.000Z",
+      "updatedAt": "2026-01-10T09:15:14.186Z",
+      "customInfo": {
+        "customer": {
+          "name": "LS ITC",
+          "support": "(주) 인더포레스트",
+          "inspector": "김진수",
+          "date": "2025-12-15",
+          "phone": "010-8766-2024",
+          "type": "■ 월\n□ 분기\n□ 특별",
+          "note": ""
+        },
+        "system": [
+          {
+            "product": "Trellix EX",
+            "equipment": "LS-EX1",
+            "version": "10.0.4.1005222",
+            "customer": "LS ITC",
+            "usage": "Email Security (e-APT) System"
+          },
+          {
+            "product": "Trellix EX",
+            "equipment": "LS-EX2",
+            "version": "10.0.4.1005222",
+            "customer": "LS ITC",
+            "usage": "Email Security (e-APT) System"
+          }
+        ],
+        "license": [
+          {
+            "appliance": "EX8500 #1",
+            "serial": "FZ2224RA8IX",
+            "id": "74FE48680D31",
+            "endDate": "2027-06-25",
+            "features": [
+              "FIREEYE_APPLIANCE",
+              "FIREEYE_SUPPORT",
+              "CONTENT_UPDATES",
+              "EMPS_ATTACHMENT_SCAN",
+              "EMPS_URL_SCAN"
+            ]
+          },
+          {
+            "appliance": "EX8500 #2",
+            "serial": "FZ2224RA8IV",
+            "id": "74FE48695A6E",
+            "endDate": "2027-06-25",
+            "features": [
+              "FIREEYE_APPLIANCE",
+              "FIREEYE_SUPPORT",
+              "CONTENT_UPDATES",
+              "EMPS_ATTACHMENT_SCAN",
+              "EMPS_URL_SCAN"
+            ]
+          }
+        ],
+        "summary": {
+          "result": "[점검 결과]\n□ EX1, 2 공통\n- /var 파일 시스템 가용량 확보를 위한 perfmon 로그 백업 및 삭제 작업 필요",
+          "note": "[비고]\n※ 신규 이미지 버전(11.0.0) 출시"
+        }
+      },
+      "sections": [
+        {
+          "id": "8d21d252-bfd1-4390-880e-fabe6b51e1c7",
+          "title": "하드웨어 상태 점검",
+          "sortOrder": 1,
+          "items": [
+            {
+              "id": "ddbf1894-6486-4626-9447-06a5a6f61d64",
+              "category": "하드웨어 상태 점검",
+              "criteria": "전원 공급 및 하드웨어 전원 상태 확인\n(Show system hardware status power supply)",
+              "result": "전원 상태: Good",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "c528fb0e-646e-42be-945d-d353ad12be94",
+              "category": "하드웨어 상태 점검",
+              "criteria": "시스템 쿨링팬 동작 상태 확인\n(CLI - show system hardware status fan)",
+              "result": "Overall fan health: healthySystem",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "7605ca49-2f53-4f0c-b542-81c81d49d284",
+              "category": "하드웨어 상태 점검",
+              "criteria": "시스템 내부 온도 적정 여부 확인\n(CLI - show system hardware status temperature)",
+              "result": "시스템 온도: 44°C (상태: elsius)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            },
+            {
+              "id": "411e7ac8-e461-45de-9875-16443e184c8d",
+              "category": "하드웨어 상태 점검",
+              "criteria": "디스크 인식 여부 및 RAID 상태 확인\n(CLI - show system hardware status raid)",
+              "result": "Overall raid status: Good\n\nDisk status:\n- Disk 0: Online\n- Disk 1: Online\n- Disk 2: Online\n- Disk 3: Online",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "8c8c87e5-80a5-42b4-adea-796c17002735",
+          "title": "시스템 버전 점검",
+          "sortOrder": 2,
+          "items": [
+            {
+              "id": "8c0ca792-b294-48e2-8b5a-4c42bee194d9",
+              "category": "시스템 버전 점검",
+              "criteria": "Security Content가 최근 시간에 업데이트 되었으면 정상",
+              "result": "Security Content 버전 정보를 찾을 수 없음",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "971b8103-8c20-44c6-bcc7-ee7676756607",
+              "category": "시스템 버전 점검",
+              "criteria": "FEOS Version 10.0.4.1005222",
+              "result": "10.0.4.1005222",
+              "opinion": "양호",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "7b9d90fa-5fb1-4e29-ac86-37270e949afc",
+              "category": "시스템 버전 점검",
+              "criteria": "Guest Image",
+              "result": "Version: 24.0503 (yes)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            }
+          ]
+        },
+        {
+          "id": "5f153dfe-b7f3-41c7-9528-8a30c5387939",
+          "title": "파일 시스템 상태 점검",
+          "sortOrder": 3,
+          "items": [
+            {
+              "id": "a58c33dd-c0db-4b87-bfcd-02019a068158",
+              "category": "파일 시스템 상태 점검",
+              "criteria": "/config 사용량 확인\n(CLI - show files system)",
+              "result": "사용량: 4.1% (20MB/488MB)\n여유공간: 95.9% (468MB)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "30afffa6-448b-4aa6-b173-acfa80260051",
+              "category": "파일 시스템 상태 점검",
+              "criteria": "/var 사용량 확인\n(CLI - show files system)",
+              "result": "사용량: 75.3% (48458MB/64379MB)\n여유공간: 24.7% (15922MB)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "7b569bf0-b5a7-4177-9748-0c1ac23747f2",
+              "category": "파일 시스템 상태 점검",
+              "criteria": "/data 사용량 확인\n(CLI - show files system)",
+              "result": "사용량: 14.7% (457100MB/3102396MB)\n여유공간: 85.3% (2645296MB)",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            }
+          ]
+        },
+        {
+          "id": "25679ea4-5a5c-464d-8c8d-08516a44039e",
+          "title": "시스템 상태 점검",
+          "sortOrder": 4,
+          "items": [
+            {
+              "id": "1531f5bb-2eb7-4d7c-9b4d-56057c65e22b",
+              "category": "시스템 상태 점검",
+              "criteria": "Uptime 시간 확인\n(CLI - show version)",
+              "result": "시스템 가동 시간: 211d 16h 19m",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 1
+            },
+            {
+              "id": "d563d417-c6f9-44fb-b075-48b9f9f056fa",
+              "category": "시스템 상태 점검",
+              "criteria": "DB 사용/여유 공간 확인\n(CLI - show health all / Database Service)",
+              "result": "Database Service: Healthy\nDB 크기: 8.5 GB, 여유공간: 446 GB",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 2
+            },
+            {
+              "id": "d08d379a-c444-4398-bf36-6505da7185d8",
+              "category": "시스템 상태 점검",
+              "criteria": "시스템 Memory 사용량 확인\n(CLI - show memory)",
+              "result": "Physical Memory: 사용량 17.7%\nSwap Memory: 사용량 0.8%",
+              "opinion": "특이사항 없음",
+              "isDeleted": false,
+              "sortOrder": 3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
