@@ -7,9 +7,10 @@ interface EditableCellProps {
     value: string;
     onChange: (value: string) => void;
     multiline?: boolean;
+    renderDisplay?: (value: string) => React.ReactNode;
 }
 
-export default function EditableCell({ value, onChange, multiline = false }: EditableCellProps) {
+export default function EditableCell({ value, onChange, multiline = false, renderDisplay }: EditableCellProps) {
     const [editing, setEditing] = useState(false);
     const [localValue, setLocalValue] = useState(value);
     const inputRef = useRef<HTMLTextAreaElement | HTMLInputElement>(null);
@@ -68,7 +69,7 @@ export default function EditableCell({ value, onChange, multiline = false }: Edi
             tabIndex={0}
             onFocus={() => setEditing(true)}
         >
-            {value || <span className="text-gray-400 text-sm">(Empty)</span>}
+            {renderDisplay ? renderDisplay(value) : (value || <span className="text-gray-400 text-sm">(Empty)</span>)}
         </div>
     );
 }

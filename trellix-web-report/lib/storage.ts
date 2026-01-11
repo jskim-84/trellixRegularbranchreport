@@ -71,6 +71,13 @@ export interface Report {
     createdAt: string;
     updatedAt: string;
     customInfo?: CustomReportInfo; // Optional custom header data
+    themeConfig?: {
+        primary: string;
+        secondary: string;
+        tertiary?: string;
+        border?: string;
+        text?: string;
+    };
     sections: Section[];
 }
 

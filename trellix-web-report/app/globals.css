@@ -1,8 +1,16 @@
 :root {
+  /* Global Theme Colors */
+  --theme-primary: #1e40af;
+  --theme-secondary: #3b82f6;
+  --theme-tertiary: #dbeafe;
+  --theme-border: #1d4ed8;
+  --theme-text: #1e40af;
+
+  /* Applied Colors */
   --bg: #ffffff;
   --fg: #111827;
-  --header-bg: #1f4e79;
-  --footer-bg: #1f4e79;
+  --header-bg: var(--theme-primary);
+  --footer-bg: var(--theme-primary);
   --header-fg: #ffffff;
   --footer-fg: #ffffff;
   --width-col-ab: 30%;
@@ -70,4 +78,24 @@ tbody tr:nth-child(even) {
 
 .col-e {
   width: var(--width-col-e);
+}
+
+/* Theme Utilities */
+.bg-primary {
+  background-color: var(--theme-primary) !important;
+  color: white !important;
+}
+
+.bg-secondary {
+  background-color: var(--theme-secondary) !important;
+  color: white !important;
+}
+
+.bg-tertiary {
+  background-color: var(--theme-tertiary) !important;
+  color: var(--theme-text) !important;
+}
+
+.border-theme {
+  border-color: var(--theme-border) !important;
 }

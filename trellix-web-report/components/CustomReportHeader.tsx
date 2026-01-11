@@ -2,13 +2,16 @@ import React from 'react';
 import { CustomReportInfo } from '@/lib/storage';
 import EditableCell from './EditableCell';
 
+import { THEME_COLORS } from '@/lib/constants';
+
 interface CustomReportHeaderProps {
     info: CustomReportInfo;
     reportType: string;
     onUpdate: (field: keyof CustomReportInfo, value: any) => void;
+    themeOverride?: { primary: string; secondary: string };
 }
 
-export default function CustomReportHeader({ info, reportType, onUpdate }: CustomReportHeaderProps) {
+export default function CustomReportHeader({ info, reportType, onUpdate, themeOverride }: CustomReportHeaderProps) {
     const handleNestedUpdate = (section: keyof CustomReportInfo, key: string, value: string, index?: number) => {
         if (index !== undefined && Array.isArray(info[section])) {
             const newArray = [...(info[section] as any[])];
@@ -23,35 +26,17 @@ export default function CustomReportHeader({ info, reportType, onUpdate }: Custo
     };
 
     // Style constants based on report type
-    // EX: Green theme (#059669, #10b981, #ecfdf5)
-    // CM: Orange theme (#ea6100, #cc5500, #fff4e6)
-    // HX: Blue theme (#1e40af, #3b82f6, #dbeafe)
+    // All types now base off THEME_COLORS, but we keep logic if needed for future divergence
     const getTheme = (type: string) => {
-        if (type === 'EX') {
+        const base = THEME_COLORS;
+
+        if (themeOverride) {
             return {
-                primary: '#1e40af', // EX Green
-                secondary: '#3b82f6', // EX Medium Green
-                tertiary: '#dbeafe', // EX Light Green
-                text: '#1e40af', // EX Dark Green Text
-                border: '#1d4ed8' // EX Border
-            };
-        } else if (type === 'CM') {
-            return {
-                primary: '#1e40af', // CM Orange
-                secondary: '#3b82f6', // CM Orange
-                tertiary: '#dbeafe', // CM Light Orange
-                text: '#1e40af', // CM Orange Text
-                border: '#1d4ed8' // CM Border
-            };
-        } else {
-            return {
-                primary: '#1e40af', // Deep Blue
-                secondary: '#3b82f6', // User requested blue
-                tertiary: '#dbeafe', // Very Light Blue
-                text: '#1e40af', // Dark Blue Text
-                border: '#1d4ed8' // Border
+                ...base,
+                ...themeOverride
             };
         }
+        return base;
     };
 
     const theme = getTheme(reportType);
@@ -110,7 +95,7 @@ export default function CustomReportHeader({ info, reportType, onUpdate }: Custo
                 <tbody>
                     {/* Customer Info */}
                     <tr>
-                        <th rowSpan={4} style={{ backgroundColor: theme.secondary, color: 'white', width: '100px', padding: '12px', border: '1px solid #cbd5e1' }}>고객사</th>
+                        <th rowSpan={4} style={{ backgroundColor: theme.primary, color: 'white', width: '100px', padding: '12px', border: '1px solid #cbd5e1' }}>고객사</th>
                         <th style={{ backgroundColor: theme.tertiary, color: theme.text, padding: '12px', border: '1px solid #cbd5e1' }}>고객사명</th>
                         <td colSpan={2} style={{ padding: '12px', border: '1px solid #cbd5e1', backgroundColor: '#fff' }}>
                             <EditableCell value={info.customer.name} onChange={(v) => handleNestedUpdate('customer', 'name', v)} />
@@ -151,7 +136,7 @@ export default function CustomReportHeader({ info, reportType, onUpdate }: Custo
 
                     {/* System Info */}
                     <tr>
-                        <th rowSpan={systems.length + 1} style={{ backgroundColor: theme.secondary, color: 'white', padding: '12px', border: '1px solid #cbd5e1' }}>시스템<br />정보</th>
+                        <th rowSpan={systems.length + 1} style={{ backgroundColor: theme.primary, color: 'white', padding: '12px', border: '1px solid #cbd5e1' }}>시스템<br />정보</th>
                         <th style={{ backgroundColor: theme.tertiary, color: theme.text, padding: '12px', border: '1px solid #cbd5e1' }}>제품명</th>
                         <th style={{ backgroundColor: theme.tertiary, color: theme.text, padding: '12px', border: '1px solid #cbd5e1' }}>장비명</th>
                         <th style={{ backgroundColor: theme.tertiary, color: theme.text, padding: '12px', border: '1px solid #cbd5e1' }}>버전정보</th>
@@ -181,7 +166,7 @@ export default function CustomReportHeader({ info, reportType, onUpdate }: Custo
                     {/* License Info */}
                     <tr>
                         {/* ✅ 동적 rowSpan */}
-                        <th rowSpan={totalLicenseRows + 1} style={{ backgroundColor: theme.secondary, color: 'white', padding: '12px', border: '1px solid #cbd5e1' }}>
+                        <th rowSpan={totalLicenseRows + 1} style={{ backgroundColor: theme.primary, color: 'white', padding: '12px', border: '1px solid #cbd5e1' }}>
                             라이선스<br />정보
                         </th>
                         <th style={{ backgroundColor: theme.tertiary, color: theme.text, padding: '12px', border: '1px solid #cbd5e1' }}>Appliance</th>
@@ -250,7 +235,7 @@ export default function CustomReportHeader({ info, reportType, onUpdate }: Custo
 
                     {/* Summary */}
                     <tr>
-                        <th style={{ backgroundColor: theme.secondary, color: 'white', padding: '12px', border: '1px solid #cbd5e1' }}>점검 종합의견</th>
+                        <th style={{ backgroundColor: theme.primary, color: 'white', padding: '12px', border: '1px solid #cbd5e1' }}>점검 종합의견</th>
                         <td colSpan={5} style={{ padding: '15px', border: '1px solid #cbd5e1', backgroundColor: '#fff', lineHeight: '1.7', textAlign: 'left' }}>
                             <EditableCell value={info.summary.result} onChange={(v) => handleNestedUpdate('summary', 'result', v)} multiline />
                             <br />
